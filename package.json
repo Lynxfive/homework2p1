@@ -1,0 +1,19 @@
+{
+  "name": "textupdating",
+  "version": "1.0.0",
+  "description": "Part 1 - Updating text",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "pretest": "jshint ./src",
+    "test": "echo \"Tests complete\""
+  },
+  "author": "Cole Cooper",
+  "license": "ISC",
+  "devDependencies": {
+    "jshint": "^2.9.1"
+  },
+  "dependencies": {
+    "socket.io": "^1.4.5"
+  }
+}

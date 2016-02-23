@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        "use strict";
+
+        var socket;
+        var totalScore;
+        var myScore = 0;
+        var myScoreElem; 
+        
+        function generateScore() {
+            myScore += 5;
+			
+            myScoreElem.innerText = myScore;
+			
+            socket.emit("updateScore", 5);
+        }
+        
+        //display updated score from server
+        function update(data) {
+            totalScore.innerText = data;
+        }
+        
+        function init() {
+            totalScore = document.querySelector("#totalScore"); //total score element
+            myScoreElem = document.querySelector("#myScore"); //personal score element
+            totalScore.innerText = "0"; //default text for page
+
+            socket = io.connect();
+            
+            //socket connects successfully
+            socket.on('connect', function () {
+                setInterval(generateScore, 3000);
+            });      
+            
+            socket.on('updated', update);
+        }
+
+      window.onload = init;
+    </script>
+</head>
+<body>
+    <h2>Total Score: <span id="totalScore"></span></h2>
+    <h2>My Generated Score: <span id="myScore"></span></h2>
+</body>
+</html>
