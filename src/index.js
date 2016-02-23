@@ -2,7 +2,9 @@ var app = require('http').createServer(handler);
 var io = require('socket.io')(app);
 var fs = require('fs');
 
-app.listen(3000);
+var PORT = process.env.PORT || process.env.NODE_PORT || 3000;
+
+app.listen(PORT);
 
 var myScore = 0;
 
